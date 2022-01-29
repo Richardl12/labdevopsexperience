@@ -56,7 +56,8 @@ jobs:
         run: heroku git:remote --app devopslableonardomendonca
         env:
             HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-
+      - name: listar remote
+        run: git remote -v  
       # Enviando o código da App para o Heroku fazer Deploy
       - name: Push to Heroku & Deploy
         run: git push heroku HEAD:main --force
