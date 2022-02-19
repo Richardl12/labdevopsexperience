@@ -18,7 +18,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.10'
+          python-version: '3.10'    
 
       - name: Install Requirements
         run:  pip install flask
@@ -46,7 +46,11 @@ jobs:
       steps:
       - name: Checkout Repo
         uses: actions/checkout@v2    
-      
+
+      - name: New Relic License ADD
+        run: |
+          sed -i "s/licensekey/${{ secrets.NEW_RELIC_LICENSE_KEY }}/g" Dockerfile
+ 
       - name: Login to Heroku Container registry
         env: 
           HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
